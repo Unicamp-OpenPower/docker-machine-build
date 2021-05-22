@@ -1,0 +1,18 @@
+os: linux
+arch: ppc64le
+dist: focal
+sudo: required
+services:
+  - docker
+language: go
+go:
+- "1.16.x"
+
+script:
+  - git clone https://gitlab.com/gitlab-org/ci-cd/docker-machine.git
+  - rm docker-machine/mk/build.mk
+  - cp build.mk docker-machine/mk/
+  - cd docker-machine
+  - TARGET_OS=linux TARGET_ARCH=ppc64le make build-x
+  - cd bin
+  - ls
