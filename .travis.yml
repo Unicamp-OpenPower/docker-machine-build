@@ -22,3 +22,4 @@ script:
   - TARGET_OS=linux TARGET_ARCH=ppc64le make build-x
   - cd bin
   - ls
+  - ./docker-machine-Linux-ppc64le --version
