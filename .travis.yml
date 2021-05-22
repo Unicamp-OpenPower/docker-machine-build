@@ -9,10 +9,16 @@ go:
 - "1.16.x"
 
 script:
+  - cd $GOPATH
+  - mkdir -p src/github.com/docker/
+  - cd src/github.com/docker/
   - git clone https://gitlab.com/gitlab-org/ci-cd/docker-machine.git
-  - rm docker-machine/mk/build.mk
-  - cp build.mk docker-machine/mk/
-  - cd docker-machine
+  - mv docker-machine machine
+  - rm machine/mk/build.mk
+  - cd machine/mk/
+  - wget https://raw.githubusercontent.com/Unicamp-OpenPower/docker-machine-build/main/build.mk
+  - ls
+  - cd ..
   - TARGET_OS=linux TARGET_ARCH=ppc64le make build-x
   - cd bin
   - ls
